@@ -5,33 +5,14 @@ Thermal model of a tank with a fluid and a resistance to control its temperature
 import json
 from dataclasses import dataclass, fields
 
+from data.variable import Variable
+
 default_data = "../data/thermal_model.json"
 
 @dataclass
 class TemperatureRate:
     fluid: float
     resistence: float
-
-
-@dataclass
-class Variable:
-    unit: str
-    value: float
-    meaning: str
-
-    def __mul__(self, other):
-        return self.value * other.value
-
-    def __rmul__(self, other):
-        return self.value * other
-
-    def __add__(self, other):
-        return self.value + other.value
-
-    def __sub__(self, other):
-        if isinstance(other, Variable):
-            return self.value - other.value
-        return self.value - other
 
 
 @dataclass
@@ -98,12 +79,12 @@ def load_model(file: str = default_data) -> tuple[FluidModel, ResistenceModel, I
     return fluid, resistence, initial_values
 
 
-def tank_temperature_rate(M, t) -> tuple[float, float]:
+def tank_temperature_rate(M, t, Q_bar) -> tuple[float, float]:
     T, Tr = M
     fluid, resistence, initial_values = load_model()
     T_diff = Tr - T
     dT_dt = (fluid.enthalpy(T) + resistence.heat_loss(T_diff))/fluid.entropy()
-    dTr_dt = (initial_values.Q_bar - resistence.heat_loss(T_diff))/resistence.entropy()
+    dTr_dt = (Q_bar - resistence.heat_loss(T_diff))/resistence.entropy()
     return dT_dt, dTr_dt
 
 
@@ -114,6 +95,7 @@ if __name__ == "__main__":
     initial_values = data[2]
     T0 = initial_values.T0.value
     Tr0 = initial_values.Tr0.value
+    Q_bar = initial_values.Q_bar.value
     t = np.linspace(0, 100, num=100)
-    M = odeint(tank_temperature_rate, [T0, Tr0], t)
+    M = odeint(tank_temperature_rate, [T0, Tr0], t, Q_bar)
 
