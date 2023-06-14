@@ -20,6 +20,7 @@ class Report:
     fluid_temperature: np.ndarray
     resistence_temperature: np.ndarray
     control_action: np.ndarray
+    errors: np.ndarray
 
 
 class Simulator:
@@ -40,8 +41,9 @@ class Simulator:
         end = horizon * self.control_params.dt
         registers = []
         control_actions = []
+        errors = []
         while current_time < end:
-            new_action = control_action(
+            new_action, last_I = control_action(
                 error=error,
                 last_error=last_error,
                 pid_params=self.control_params,
@@ -53,15 +55,21 @@ class Simulator:
             M = odeint(self.model.measured_variable, [T0, Tr0], t, args=(new_action,))
             registers.append(M)
             control_actions.append(new_action)
+            errors.append(error)
 
             T0 = M[-1:, 0][0]
             Tr0 = M[-1:, 1][0]
+            last_error = error
+            error = self.control_params.SP - T0
+
             current_time += self.control_params.dt.value
 
+        all_temperatures = np.concatenate(registers)
         report = Report(
-            fluid_temperature=M[:,0],
-            resistence_temperature=M[:,1],
-            control_action=control_actions
+            fluid_temperature=all_temperatures[:,0],
+            resistence_temperature=all_temperatures[:,1],
+            control_action=control_actions,
+            errors=errors
         )
 
         return report

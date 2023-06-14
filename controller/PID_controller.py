@@ -32,5 +32,5 @@ def control_action(
 
     # PID equation
     new_action = current_action + pid_params.Kc * (P + (1/pid_params.Taui.value)*I + pid_params.Taud.value*D)
-    return new_action
+    return new_action, I
 
