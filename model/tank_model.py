@@ -79,13 +79,27 @@ def load_model(file: str = default_data) -> tuple[FluidModel, ResistenceModel, I
     return fluid, resistence, initial_values
 
 
-def tank_temperature_rate(M, t, Q_bar) -> tuple[float, float]:
+def tank_temperature_rate(M, t, Q_bar, n, k) -> tuple[float, float]:
     T, Tr = M
     fluid, resistence, initial_values = load_model()
     T_diff = Tr - T
     dT_dt = (fluid.enthalpy(T) + resistence.heat_loss(T_diff))/fluid.entropy()
     dTr_dt = (Q_bar - resistence.heat_loss(T_diff))/resistence.entropy()
     return dT_dt, dTr_dt
+
+
+class Tank:
+    def __init__(self):
+        self.fluid, self.resistance, self.initial_values = load_model()
+
+    @staticmethod
+    def measured_variable(M, t, Q_bar):
+        T, Tr = M
+        fluid, resistence, initial_values = load_model()
+        T_diff = Tr - T
+        dT_dt = (fluid.enthalpy(T) + resistence.heat_loss(T_diff)) / fluid.entropy()
+        dTr_dt = (Q_bar - resistence.heat_loss(T_diff)) / resistence.entropy()
+        return dT_dt, dTr_dt
 
 
 if __name__ == "__main__":
@@ -98,4 +112,6 @@ if __name__ == "__main__":
     Q_bar = initial_values.Q_bar.value
     t = np.linspace(0, 100, num=100)
     M = odeint(tank_temperature_rate, [T0, Tr0], t, Q_bar)
+
+
 
