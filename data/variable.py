@@ -8,7 +8,9 @@ class Variable:
     meaning: str
 
     def __mul__(self, other):
-        return self.value * other.value
+        if hasattr(other, 'value'):
+            return self.value * other.value
+        return self.value * other
 
     def __rmul__(self, other):
         return self.value * other
