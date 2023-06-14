@@ -1,5 +1,10 @@
 {
   "control": {
+    "SP": {"unit": "K", "value":  305, "meaning": "Set Point"},
+    "dt": {"unit": "s", "value":  50, "meaning": "Sampling Interval"},
+    "Kc": {"unit": "", "value":  10, "meaning": "Proportional Gain"},
+    "Taui": {"unit": "", "value":  0.2, "meaning": "Integrative Gain"},
+    "Taud": {"unit": "", "value":  2, "meaning": "Derivative Gain"}
   },
   "model": {
     "fluid": {
@@ -19,7 +24,7 @@
     "initial_values": {
       "T0": {"unit": "K", "value":  302.39, "meaning": "initial fluid temperature"},
       "Tr0": {"unit": "K", "value":  387.14, "meaning": "initial resistence temperature"},
-      "Q_bar": {"unit": "W", "value":  10000, "meaning": "thermal power000000"}
+      "Q_bar": {"unit": "W", "value":  10000, "meaning": "thermal power"}
     }
   }
 }
