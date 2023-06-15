@@ -2,7 +2,7 @@
   "control": {
     "SP": {
       "unit": "K",
-      "value": 305,
+      "value": 700.0,
       "meaning": "Set Point"
     },
     "dt": {
@@ -22,7 +22,7 @@
     },
     "Taud": {
       "unit": "",
-      "value": 2,
+      "value": 10.0,
       "meaning": "Derivative Gain"
     }
   },
@@ -70,12 +70,12 @@
         "value": 382,
         "meaning": "specific heat"
       },
-      "hr": {
+      "h": {
         "unit": "W/(m^2.K)",
         "value": 1180,
         "meaning": "heat transfer coefficient between fluid and metal"
       },
-      "Ar": {
+      "A": {
         "unit": "m^2",
         "value": 0.1,
         "meaning": "superficial area"
