@@ -1,4 +1,4 @@
-from app.data_model.variable_names import VariableName, ThermalModel
+from app.data_model.variable_names import ModelVariableName, ControlVariableName, ThermalModel
 from pydantic import BaseModel as PydanticBaseModel
 from typing import Union, List, Optional
 
@@ -10,7 +10,7 @@ class BaseModel(PydanticBaseModel):
 
 class ModelVariable(BaseModel):
     model: ThermalModel
-    name: VariableName
+    name: ModelVariableName
     value: Union[float, int]
     last_value: Optional[Union[float]]
 
@@ -22,7 +22,7 @@ class ModelVariable(BaseModel):
                     "type": "string"
                 },
                 "name": {
-                    "enum": [e.value for e in VariableName],
+                    "enum": [e.value for e in ModelVariableName],
                     "type": "string"
                 },
             }
@@ -34,17 +34,22 @@ class ModelVariableContainer(BaseModel):
 
 
 class ControlVariable(BaseModel):
-    name: VariableName
+    name: ControlVariableName
     value: Union[int, float]
+    last_value: Optional[Union[float]]
 
     class Config:
         schema_extra = {
             "definitions": {
                 "name": {
-                    "enum": [e.value for e in VariableName],
+                    "enum": [e.value for e in ControlVariableName],
                     "type": "string"
                 },
             }
         }
+
+
+class ControlVariableContainer(BaseModel):
+    variables: List[ControlVariable]
 
 

@@ -12,7 +12,7 @@ class ThermalModel(str, Enum):
     INITIAL_VALUES = "initial_values"
 
 
-class VariableName(str, Enum):
+class ModelVariableName(str, Enum):
     DENSITY = "rho"
     FLOW = "q"
     SPECIFIC_HEAT = "cp"
@@ -23,6 +23,9 @@ class VariableName(str, Enum):
     INITIAL_TEMPERATURE = "T0"
     INITIAL_RESISTANCE_TEMPERATURE = "Tr0"
     INITIAL_ELECTRIC_POWER = "Q_bar"
+
+
+class ControlVariableName(str, Enum):
     SET_POINT = "SP"
     TIME_INTERVAL = "dt"
     PROPORTIONAL_GAIN = "Kc"
