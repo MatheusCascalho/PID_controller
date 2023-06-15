@@ -11,7 +11,28 @@ Cada arquivo desse módulo tem por objetivo modelar um sistema ou subsistema dif
 
 Atualmente, os modelos implementados são:
 
-- **tank_model**: Tanque com resistência para controle de temperatura de um fluido
+- **tank_model**: Tanque com resistência (r) para controle de temperatura de um fluido (f). O comportamento dinâmico desse modelo
+  pode ser descrito pelas equações diferenciais abaixo:
+  $$
+   \frac{dT_f}{dt} = \frac{\rho q c_p (T_f - T) + h_r A_r (T_r - T)}{\rho V c_p}
+  $$
+
+  $$
+   \frac{dT_r}{dt} = \frac{Q + h_r A_r (T_r - T)} {\rho_r V_r c_{p_r}}
+  $$
+
+  onde:
+  - Q: potência elétrica da resistência;
+  - h: coeficiente convectivo;
+  - $\rho$: densidade do material;
+  - T: temperatura;
+  - A: área superficial;
+  - q: vazão volumétrica;
+  - $c_p$: calor específico;
+
+  A figura 1 apresenta o um diagrama com a representação do modelo.
+  ![Figura 1: Representação do modelo. Imagem utilizada na aula do professor Felipi Bezerra - disponível em https://youtu.be/0jZT7yYJ9p8](/img/tanque.png)
+
 
 ### Controller
 
@@ -25,6 +46,9 @@ $$
 $$
 
 ### Simulation
+
+Módulo que realiza a simulação temporal do modelo com a ação de controle. 
+Esse método de simulação utilização o pacote `scipy.integrate` para resolução de equações diferenciais (função `odeint`).
 
 ### Data
 
