@@ -13,13 +13,14 @@ Atualmente, os modelos implementados são:
 
 - **tank_model**: Tanque com resistência (r) para controle de temperatura de um fluido (f). O comportamento dinâmico desse modelo
   pode ser descrito pelas equações diferenciais abaixo:
-  $$
-   \frac{dT_f}{dt} = \frac{\rho q c_p (T_f - T) + h_r A_r (T_r - T)}{\rho V c_p}
-  $$
+  
+$$
+ \frac{dT_f}{dt} = \frac{\rho q c_p (T_f - T) + h_r A_r (T_r - T)}{\rho V c_p}
+$$
 
-  $$
-   \frac{dT_r}{dt} = \frac{Q + h_r A_r (T_r - T)} {\rho_r V_r c_{p_r}}
-  $$
+$$
+ \frac{dT_r}{dt} = \frac{Q + h_r A_r (T_r - T)} {\rho_r V_r c_{p_r}}
+$$
 
   onde:
   - Q: potência elétrica da resistência;
@@ -31,7 +32,9 @@ Atualmente, os modelos implementados são:
   - $c_p$: calor específico;
 
   A figura 1 apresenta o um diagrama com a representação do modelo.
-  ![Figura 1: Representação do modelo. Imagem utilizada na aula do professor Felipi Bezerra - disponível em https://youtu.be/0jZT7yYJ9p8](/img/tanque.png)
+
+  [![Fig. 1](/img/tanque.png)](https://youtu.be/0jZT7yYJ9p8)
+  Figura 1: Representação do modelo. Imagem utilizada na aula do professor Felipi Bezerra. Disponível em: https://youtu.be/0jZT7yYJ9p8
 
 
 ### Controller
