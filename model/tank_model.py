@@ -20,8 +20,8 @@ class ResistenceModel:
     rho: Variable
     V: Variable
     cp: Variable
-    hr: Variable
-    Ar: Variable
+    h: Variable
+    A: Variable
 
     def __post_init__(self):
         for field in fields(self):
@@ -29,7 +29,7 @@ class ResistenceModel:
             setattr(self, field.name, Variable(**data))
 
     def heat_loss(self, T_diff):
-        loss = self.hr * self.Ar * T_diff
+        loss = self.h * self.A * T_diff
         return loss
 
     def entropy(self):
