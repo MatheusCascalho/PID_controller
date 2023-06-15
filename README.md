@@ -52,7 +52,28 @@ $$
 
 Módulo que realiza a simulação temporal do modelo com a ação de controle. 
 Esse método de simulação utilização o pacote `scipy.integrate` para resolução de equações diferenciais (função `odeint`).
-
+A simulação é realizada no método `simulate`, que retorna um relatório de simulação.
 ### Data
 
+Diretório para armazenamento de dados utilizados pelos modelos e pelo controlador. 
+Cada parâmetro deve ser segregado por escopo (model ou controller) e conter os dados no seguinte formato:
+
+```json
+{
+ "unit": string,
+ "value": float, 
+ "meaning": string
+}
+```
+
+onde:
+- unit: unidade da grandeza física representada. Caso seja um valor adimensional, utilize uma string vazia;
+- value: valor da variável;
+- meaning: significado da variável para o modelo/controlador.
+
 ### Demo
+
+Diretório para apresentação gráfica dos resultados de simulação, utilizando Jupyter Notebook.
+A figura 2 apresenta um desses resultados: a evolução da ação de controle com relação ao erro do sistema.
+
+![Fig 2: erro e controle](/img/controle.png)
