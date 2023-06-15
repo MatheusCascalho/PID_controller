@@ -1,30 +1,102 @@
 {
   "control": {
-    "SP": {"unit": "K", "value":  305, "meaning": "Set Point"},
-    "dt": {"unit": "s", "value":  50, "meaning": "Sampling Interval"},
-    "Kc": {"unit": "", "value":  10, "meaning": "Proportional Gain"},
-    "Taui": {"unit": "", "value":  0.2, "meaning": "Integrative Gain"},
-    "Taud": {"unit": "", "value":  2, "meaning": "Derivative Gain"}
+    "SP": {
+      "unit": "K",
+      "value": 305,
+      "meaning": "Set Point"
+    },
+    "dt": {
+      "unit": "s",
+      "value": 50,
+      "meaning": "Sampling Interval"
+    },
+    "Kc": {
+      "unit": "",
+      "value": 10,
+      "meaning": "Proportional Gain"
+    },
+    "Taui": {
+      "unit": "",
+      "value": 0.2,
+      "meaning": "Integrative Gain"
+    },
+    "Taud": {
+      "unit": "",
+      "value": 2,
+      "meaning": "Derivative Gain"
+    }
   },
   "model": {
     "fluid": {
-      "rho": {"unit": "Kg/m^3", "value":  1000, "meaning": "volumetric density"},
-      "q": {"unit": "m^3/s", "value":  0.001, "meaning": "volumetric flow rate"},
-      "cp": {"unit": "J/Kg.K", "value":  4180, "meaning": "specific heat"},
-      "T": {"unit": "K", "value":  300, "meaning": "liquid temperature"},
-      "V": {"unit": "m^3", "value":  0.2, "meaning": "volume"}
+      "rho": {
+        "unit": "Kg/m^3",
+        "value": 1000.0,
+        "meaning": "volumetric density"
+      },
+      "q": {
+        "unit": "m^3/s",
+        "value": 0.001,
+        "meaning": "volumetric flow rate"
+      },
+      "cp": {
+        "unit": "J/Kg.K",
+        "value": 4180,
+        "meaning": "specific heat"
+      },
+      "T": {
+        "unit": "K",
+        "value": 300,
+        "meaning": "liquid temperature"
+      },
+      "V": {
+        "unit": "m^3",
+        "value": 0.2,
+        "meaning": "volume"
+      }
     },
     "resistence": {
-      "rho": {"unit": "Kg/m^3", "value":  7140, "meaning": "volumetric density"},
-      "V": {"unit": "m^3", "value":  0.0003, "meaning": "volume"},
-      "cp": {"unit": "J/Kg.K", "value":  382, "meaning": "specific heat"},
-      "hr": {"unit": "W/(m^2.K)", "value":  1180, "meaning": "heat transfer coefficient between fluid and metal"},
-      "Ar": {"unit": "m^2", "value":  0.1, "meaning": "superficial area"}
+      "rho": {
+        "unit": "Kg/m^3",
+        "value": 7140,
+        "meaning": "volumetric density"
+      },
+      "V": {
+        "unit": "m^3",
+        "value": 0.0003,
+        "meaning": "volume"
+      },
+      "cp": {
+        "unit": "J/Kg.K",
+        "value": 382,
+        "meaning": "specific heat"
+      },
+      "hr": {
+        "unit": "W/(m^2.K)",
+        "value": 1180,
+        "meaning": "heat transfer coefficient between fluid and metal"
+      },
+      "Ar": {
+        "unit": "m^2",
+        "value": 0.1,
+        "meaning": "superficial area"
+      }
     },
     "initial_values": {
-      "T0": {"unit": "K", "value":  302.39, "meaning": "initial fluid temperature"},
-      "Tr0": {"unit": "K", "value":  387.14, "meaning": "initial resistence temperature"},
-      "Q_bar": {"unit": "W", "value":  10000, "meaning": "thermal power"}
+      "T0": {
+        "unit": "K",
+        "value": 302.39,
+        "meaning": "initial fluid temperature"
+      },
+      "Tr0": {
+        "unit": "K",
+        "value": 387.14,
+        "meaning": "initial resistence temperature"
+      },
+      "Q_bar": {
+        "unit": "W",
+        "value": 10000,
+        "meaning": "thermal power"
+      }
     }
   }
 }
