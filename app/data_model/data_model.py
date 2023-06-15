@@ -35,7 +35,7 @@ class ModelVariableContainer(BaseModel):
 
 class ControlVariable(BaseModel):
     name: ControlVariableName
-    value: Union[int, float]
+    value: Union[float, int]
     last_value: Optional[Union[float]]
 
     class Config:
