@@ -1,4 +1,8 @@
-from app.data_model.data_model import ModelVariableContainer, ControlVariableContainer
+from app.data_model.data_model import (
+    ModelVariableContainer,
+    ControlVariableContainer,
+    SimulationParameters
+)
 from datetime import datetime
 from flask import Flask, request
 from flask_pydantic_spec import (
@@ -6,6 +10,7 @@ from flask_pydantic_spec import (
     Response,
     Request
 )
+from simulation.tank import Report, Simulator
 from typing import List
 from tinydb import TinyDB
 import json
@@ -69,6 +74,15 @@ def update_control():
 
     db_control_updates.insert(body)
     return body
+
+
+@server.post('/simulate')
+@spec.validate(body=Request(SimulationParameters), resp=Response(HTTP_200=Report))
+def simulate():
+    params: SimulationParameters = request.context.body
+    simulator = Simulator()
+    report = simulator.simulate(horizon=params.horizon, step_by_sampling=params.step_by_sampling)
+    return report.dict()
 
 
 server.run()
