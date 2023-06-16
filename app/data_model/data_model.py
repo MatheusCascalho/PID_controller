@@ -53,3 +53,8 @@ class ControlVariableContainer(BaseModel):
     variables: List[ControlVariable]
 
 
+class SimulationParameters(BaseModel):
+    horizon: int
+    step_by_sampling: int
+
+

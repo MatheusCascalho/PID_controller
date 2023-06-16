@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 import json
 from controller.PID_controller import PID_Params, control_action
 from model.tank_model import Tank
@@ -15,12 +15,14 @@ def load_params(file: str = default_data) -> PID_Params:
     return params
 
 
-@dataclass
-class Report:
-    fluid_temperature: np.ndarray
-    resistence_temperature: np.ndarray
-    control_action: np.ndarray
-    errors: np.ndarray
+class Report(BaseModel):
+    fluid_temperature: list
+    resistence_temperature: list
+    control_action: list
+    errors: list
+
+    class Config:
+        arbitrary_types_allowed = True
 
 
 class Simulator:
@@ -66,8 +68,8 @@ class Simulator:
 
         all_temperatures = np.concatenate(registers)
         report = Report(
-            fluid_temperature=all_temperatures[:,0],
-            resistence_temperature=all_temperatures[:,1],
+            fluid_temperature=list(all_temperatures[:,0]),
+            resistence_temperature=list(all_temperatures[:,1]),
             control_action=control_actions,
             errors=errors
         )
