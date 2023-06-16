@@ -85,4 +85,5 @@ def simulate():
     return report.dict()
 
 
-server.run()
+if __name__ == "__main__":
+    server.run()
